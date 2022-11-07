@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import './ServicesSection.css'
-import 'react-photo-view/dist/react-photo-view.css';
+import "./ServicesSection.css";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const ServicesSection = () => {
   const [services, setServices] = useState([]);
@@ -19,8 +20,6 @@ const ServicesSection = () => {
       });
   }, []);
 
-  
-
   return (
     <div className="container mx-auto px-5 my-20">
       <h1 className="text-3xl semibold">{services.length}</h1>
@@ -28,9 +27,20 @@ const ServicesSection = () => {
       <div className=" flex flex-wrap justify-center lg:justify-between items-center">
         {services.map((service) => {
           return (
-            <div key={service._id} className="card w-[30rem] my-4 bg-base-100 shadow-xl">
+            <div
+              key={service._id}
+              className="card w-[30rem] my-4 bg-base-100 shadow-xl"
+            >
               <figure>
-                <img className="h-[300px] object-cover w-full" src={service.image} alt="Shoes" />
+                <PhotoProvider>
+                  <PhotoView src={service.image}>
+                    <img
+                      className="h-[300px] object-cover w-full cursor-pointer hover:opacity-80"
+                      src={service.image}
+                      alt="Shoes"
+                    />
+                  </PhotoView>
+                </PhotoProvider>
               </figure>
               <div className="card-body">
                 <h2 className="card-title ">
@@ -38,10 +48,13 @@ const ServicesSection = () => {
                   <div className="badge badge-secondary">${service.price}</div>
                 </h2>
                 <p className="short_descrip">{service.description}</p>
-                <Link className="link-hover inline-block text-right text-blue-500">see more</Link>
+                <Link className="link-hover inline-block text-right text-blue-500">
+                  see more
+                </Link>
                 <div className="card-actions">
-                  <h3 className="text-2xl font-semibold">Price: ${service.price}</h3>
-                 
+                  <h3 className="text-2xl font-semibold">
+                    Price: ${service.price}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -50,7 +63,9 @@ const ServicesSection = () => {
       </div>
 
       <div className="text-center my-8">
-        <Link to='/services' className="btn btn-primary">See all services</Link>
+        <Link to="/services" className="btn btn-primary">
+          See all services
+        </Link>
       </div>
     </div>
   );
