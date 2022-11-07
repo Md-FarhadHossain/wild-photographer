@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+
+    
+
   return (
     <div>
         <div className="container mx-auto navbar">
@@ -46,7 +49,8 @@ const Navbar = () => {
   </div>
 
   <div className="navbar-end">
-    <a className="btn">Get started</a>
+   <Link to='/signup' className='btn'>Sign Up</Link>
+   <Link to='/login' className='btn ml-4'>Login</Link>
   </div>
 
 
