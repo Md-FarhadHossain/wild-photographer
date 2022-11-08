@@ -48,7 +48,7 @@ const ServicesSection = () => {
                   <div className="badge badge-secondary">${service.price}</div>
                 </h2>
                 <p className="short_descrip">{service.description}</p>
-                <Link className="link-hover inline-block text-right text-blue-500">
+                <Link to={`/services/${service._id}`} className="link-hover inline-block text-right text-blue-500">
                   see more
                 </Link>
                 <div className="card-actions">

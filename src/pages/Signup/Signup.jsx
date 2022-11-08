@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-    const {signup} = useContext(UserContext)
+    const {signup, signinWithGoogle} = useContext(UserContext)
     const handleSignup = (e) => {
         e.preventDefault()
         const userInfo = {
@@ -19,6 +19,13 @@ const Signup = () => {
             console.log(result)
         })
         .catch(err => console.log(err))
+    }
+    const handleGoogleSignin = (e)  => {
+      e.preventDefault()
+      signinWithGoogle()
+      .then(result => {
+        console.log(result)
+      })
     }
 
   return (
@@ -82,7 +89,11 @@ const Signup = () => {
             <button className="btn btn-primary">Sign up</button>
           </div>
         </form>
+
       </div>
+        <div>
+          <button onClick={handleGoogleSignin}  className='btn btn-secondary w-full'>Sing up with Google</button>
+        </div>
     </div>
   );
 };

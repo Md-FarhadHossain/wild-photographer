@@ -8,6 +8,7 @@ import Blog from '../pages/Blog/Blog'
 import Contact from '../pages/Contact/Contact'
 import Signup from '../pages/Signup/Signup'
 import Login from '../pages/Login/Login'
+import ShowTheService from '../pages/ShowTheService/ShowTheService'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -42,7 +43,13 @@ const Routes = () => {
                 {
                     path: '/login',
                     element: <Login />
+                },
+                {
+                    path: '/services/:id',
+                    element: <ShowTheService />,
+                    loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
                 }
+                
             ]
         }
     ])

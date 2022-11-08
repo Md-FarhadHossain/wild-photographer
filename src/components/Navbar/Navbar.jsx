@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user,signout } = useContext(UserContext);
-const handleSignout = (e) => {
-    e.preventDefault()
+  const { user, signout } = useContext(UserContext);
+  const handleSignout = (e) => {
+    e.preventDefault();
     signout()
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
-}
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <div className="container mx-auto navbar">
-        <div className="navbar-start">
+        <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -36,21 +36,55 @@ const handleSignout = (e) => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <Link to="/coustomars-review">Customars Review</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
+              {user ? (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/services">Services</Link>
+                </li>
+                <li>
+                  <Link to="/coustomars-review">Customars Review</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+
+                <li>
+                  <Link className="btn btn-success mt-3" to="/my-reviews">
+                    My reviews
+                  </Link>
+                </li>
+                <li>
+                  
+                  <Link className="btn btn-success mt-3" to="/add-service">
+                    Add service
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/services">Services</Link>
+                </li>
+                <li>
+                  <Link to="/coustomars-review">Customars Review</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+              </>
+            )}
             </ul>
           </div>
 
@@ -60,28 +94,64 @@ const handleSignout = (e) => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <Link to="/coustomars-review">Customars Review</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/services">Services</Link>
+                </li>
+                <li>
+                  <Link to="/coustomars-review">Customars Review</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+
+                <li>
+                  <Link className="btn btn-success ml-4" to="/my-reviews">
+                    My reviews
+                  </Link>
+                </li>
+                <li>
+                  
+                  <Link className="btn btn-success ml-4" to="/add-service">
+                    Add service
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/services">Services</Link>
+                </li>
+                <li>
+                  <Link to="/coustomars-review">Customars Review</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blog</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
 
         <div className="navbar-end">
           {user ? (
             <>
-                <Link onClick={handleSignout} className="btn btn-warning">Sign Out</Link>
+              <Link onClick={handleSignout} className="btn btn-warning">
+                Sign Out
+              </Link>
             </>
           ) : (
             <>
