@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const AddReview = () => {
@@ -8,18 +9,23 @@ const AddReview = () => {
     const {user} = useContext(UserContext)
     // console.log(user?.displayName, user?.email, user?.photoURL)
 
+    const servicesData = useLoaderData()
+
+  console.log(servicesData)
+
     const handleReview = (e) => {
         e.preventDefault()
         const reviewValue = {
             displayName: user?.displayName,
             email: user?.email,
             photoURL: user?.photoURL,
-            review: e.target.textarea.value
+            review: e.target.textarea.value,
+            serviceId: servicesData?._id
 
         }
         console.log(reviewValue)
         
-        fetch('http://localhost:5000/add-review', {
+        fetch(`http://localhost:5000/add-review`, {
             method: 'POST',
             headers: { 
                 'content-type': 'application/json'
@@ -27,6 +33,7 @@ const AddReview = () => {
             body: JSON.stringify(reviewValue)
         })
         
+        e.target.reset()
     }
     
   return (

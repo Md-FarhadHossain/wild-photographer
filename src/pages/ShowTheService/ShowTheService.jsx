@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ShowTheService = () => {
   const serviceData = useLoaderData();
-  console.log(serviceData);
+  // console.log(serviceData);
   const [reviews, setReviews] = useState([]);
+  const [reviewId, setReviewId] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/add-review")
@@ -16,8 +17,30 @@ const ShowTheService = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/add-review/${reviews?.serviceId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        
+        console.log(data);
+        setReviewId(data);
+      });
+  },[])
+
+  console.log(reviews)
+
   const { title, description, image, price, _id } = serviceData;
 
+  reviews.map((re) => {
+    if(serviceData?._id == re.serviceId){
+      console.log('good',_id,re.serviceId)
+    } else {
+      console.log('badd',serviceData?._id, re.serviceId)
+    }
+  
+  })
+
+ 
   return (
     <div>
       <div className="container flex-col mx-auto flex items-center my-16 h-[80vh]">
@@ -32,10 +55,12 @@ const ShowTheService = () => {
             <p>{description}</p>
             <div className="text-2xl font-bold">Price: ${price}</div>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Review this service</button>
+              <Link to={`/add-review/${_id}`} className="btn btn-primary">Review this service</Link>
             </div>
           </div>
         </div>
+
+        
 
         {/* Service Review */}
         <div className="mt-14">
