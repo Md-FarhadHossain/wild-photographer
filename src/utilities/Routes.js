@@ -9,6 +9,10 @@ import Contact from '../pages/Contact/Contact'
 import Signup from '../pages/Signup/Signup'
 import Login from '../pages/Login/Login'
 import ShowTheService from '../pages/ShowTheService/ShowTheService'
+import AddService from '../pages/AddService/AddService'
+import MyReviews from '../pages/MyReviews/MyReviews'
+import PrivetRoutes from './PrivetRoutes'
+import AddReview from '../pages/AddReview/AddReview'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -48,6 +52,22 @@ const Routes = () => {
                     path: '/services/:id',
                     element: <ShowTheService />,
                     loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                },
+                {
+                    path: '/add-service',
+                    element: <PrivetRoutes>
+                        <AddService />
+                    </PrivetRoutes>
+                },
+                {
+                    path: '/my-reviews',
+                    element: <PrivetRoutes>
+                        <MyReviews />
+                    </PrivetRoutes>
+                },
+                {
+                    path: 'add-review',
+                    element: <AddReview />
                 }
                 
             ]
