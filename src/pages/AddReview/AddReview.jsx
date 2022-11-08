@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { UserContext } from "../../context/AuthContext";
 
 const AddReview = () => {
     const [reviews, setReviews] = useState()
+    const {user} = useContext(UserContext)
+    // console.log(user?.displayName, user?.email, user?.photoURL)
 
     const handleReview = (e) => {
         e.preventDefault()
         const reviewValue = {
+            displayName: user?.displayName,
+            email: user?.email,
+            photoURL: user?.photoURL,
             review: e.target.textarea.value
+
         }
         console.log(reviewValue)
         

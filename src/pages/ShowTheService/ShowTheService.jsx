@@ -5,6 +5,16 @@ import { useLoaderData, useParams } from "react-router-dom";
 const ShowTheService = () => {
   const serviceData = useLoaderData();
   console.log(serviceData);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/add-review")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setReviews(data);
+      });
+  }, []);
 
   const { title, description, image, price, _id } = serviceData;
 
@@ -20,9 +30,7 @@ const ShowTheService = () => {
           <div className="card-body">
             <h2 className="card-title">{title}</h2>
             <p>{description}</p>
-            <div className="text-2xl font-bold">
-                Price: ${price}
-            </div>
+            <div className="text-2xl font-bold">Price: ${price}</div>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Review this service</button>
             </div>
@@ -30,9 +38,68 @@ const ShowTheService = () => {
         </div>
 
         {/* Service Review */}
-        <div className="mt-14">      
-        <h1 className="text-3xl font-bold my-8">Customars Reviews</h1>
-          
+        <div className="mt-14">
+          <h1 className="text-3xl font-bold my-8">Customars Reviews</h1>
+          <div className="flex flex-wrap justify-between items-center my-8">
+            {reviews.map((userReview) => {
+              const { displayName, email, photoURL, review, _id } = userReview;
+              return (
+                <div
+                  key={_id}
+                  className=" px-8 pt-8 pb-4 shadow-lg m-4 min-w-[25rem] max-w-[30rem] rounded-md"
+                >
+                  <div className="flex items-center">
+                    <img
+                      className="rounded-full w-14 h-14 mr-3 object-cover"
+                      src={photoURL}
+                      alt=""
+                    />
+                    <div>
+                      <h2 className="font-semibold text-gray-800">
+                        {displayName}
+                      </h2>
+                      <small className=" text-gray-500">{email}</small>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="mt-4">{review}</p>
+                    <div className="rating mt-4">
+                      <input
+                        type="radio"
+                        name="rating-4"
+                        className="mask mask-star-2 bg-green-500"
+                        disabled
+                      />
+                      <input
+                        type="radio"
+                        name="rating-4"
+                        className="mask mask-star-2 bg-green-500"
+                        disabled
+                      />
+                      <input
+                        type="radio"
+                        name="rating-4"
+                        className="mask mask-star-2 bg-green-500"
+                        disabled
+                      />
+                      <input
+                        type="radio"
+                        name="rating-4"
+                        className="mask mask-star-2 bg-green-500"
+                        disabled
+                      />
+                      <input
+                        type="radio"
+                        name="rating-4"
+                        className="mask mask-star-2 bg-green-500"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
