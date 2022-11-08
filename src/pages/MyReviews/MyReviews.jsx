@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { UserContext } from "../../context/AuthContext";
+import toast, { Toaster } from 'react-hot-toast';
 
 const MyReviews = () => {
   const [myReview, setMyReview] = useState([]);
@@ -21,7 +22,10 @@ const MyReviews = () => {
     // e.preventDefault()
     fetch(`http://localhost:5000/add-review/${userReview?._id}`, {
       method: "DELETE",
-    }).then((data) => console.log(data));
+    }).then((data) => {
+      console.log(data)
+      toast.success('Successfully Deleted the Review!')
+    });
   };
 
   return (
@@ -99,6 +103,8 @@ const MyReviews = () => {
           </table>
         </div>
       </div>
+
+    <Toaster />
     </div>
   );
 };
