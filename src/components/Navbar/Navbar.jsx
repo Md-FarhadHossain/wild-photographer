@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
   const { user, signout } = useContext(UserContext);
@@ -89,7 +90,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Wildlife Grapher
+           <img className="w-9 mr-2" src={logo} alt="" /> Wildlife Grapher
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
