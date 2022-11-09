@@ -26,6 +26,8 @@ const AddService = () => {
     })
   }
 
+  document.title = 'Add Service'
+
   return (
     <div className="container mx-auto">
       <div className="flex justify-center flex-col items-center h-[80vh]">

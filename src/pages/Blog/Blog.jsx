@@ -2,6 +2,7 @@ import React from "react";
 import BlogContent from "./BlogContent";
 
 const Blog = () => {
+  document.title = 'Blog'
   return (
     <div>
       <BlogContent

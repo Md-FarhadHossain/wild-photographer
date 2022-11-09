@@ -25,7 +25,7 @@ const Login = () => {
         })
         .catch(err => console.log(err))
     }
-
+    document.title = 'Login'
   return (
     <div className="h-[75vh] flex flex-col items-center justify-center">
     <h1 className="text-4xl mb-6 font-bold">Login Here</h1>

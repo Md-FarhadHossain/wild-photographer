@@ -25,7 +25,7 @@ const Services = () => {
         <h1 className="text-3xl">Loading ........</h1>
     </>
 }
-
+document.title = 'Services'
   return (
     <div className='container mx-auto my-20'>
       <h1 className="text-3xl font-bold text-center my-20">Services</h1>

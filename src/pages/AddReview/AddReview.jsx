@@ -11,6 +11,7 @@ const AddReview = () => {
     // console.log(user?.displayName, user?.email, user?.photoURL)
 
     const servicesData = useLoaderData()
+    document.title = 'Add Review'
 
   console.log(servicesData)
 

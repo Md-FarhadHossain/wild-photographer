@@ -27,7 +27,8 @@ const MyReviews = () => {
       toast.success('Successfully Deleted the Review!')
     });
   };
-
+  document.title = 'My Review'
+  
   return (
     <div className="mx-auto container">
       my review

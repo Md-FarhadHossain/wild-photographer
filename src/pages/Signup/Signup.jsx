@@ -27,7 +27,7 @@ const Signup = () => {
         console.log(result)
       })
     }
-
+    document.title = 'Sign Up'
   return (
     <div className="h-[75vh] flex flex-col items-center justify-center">
       <h1 className="text-4xl mb-6 font-bold">Signup Now</h1>

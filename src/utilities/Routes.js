@@ -67,7 +67,9 @@ const Routes = () => {
                 },
                 {
                     path: '/add-review/:id',
-                    element: <AddReview />,
+                    element: <PrivetRoutes>
+                        <AddReview />
+                    </PrivetRoutes>,
                     loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
                 }
                 
