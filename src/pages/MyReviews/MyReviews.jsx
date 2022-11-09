@@ -10,7 +10,11 @@ const MyReviews = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/add-review?email=${user?.email}`)
+    fetch(`http://localhost:5000/add-review?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)
