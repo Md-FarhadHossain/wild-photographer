@@ -1,4 +1,5 @@
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddService = () => {
 
@@ -20,6 +21,8 @@ const AddService = () => {
     })
     .then(result => {
       console.log(result)
+      e.target.reset()
+      toast.success('Service added successfully!')
     })
   }
 
@@ -70,6 +73,8 @@ const AddService = () => {
           </div>
         </form>
       </div>
+
+      <Toaster />
     </div>
   );
 };

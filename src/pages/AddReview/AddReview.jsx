@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
@@ -32,7 +33,10 @@ const AddReview = () => {
             },
             body: JSON.stringify(reviewValue)
         })
-        
+        .then(result => {
+          console.log(result)
+          toast.success('Review added successfully!')
+        })
         e.target.reset()
     }
     
@@ -48,6 +52,7 @@ const AddReview = () => {
         ></textarea>
         <button className="btn mt-8">Add The Review</button>
       </form>
+      <Toaster />
     </div>
   );
 };

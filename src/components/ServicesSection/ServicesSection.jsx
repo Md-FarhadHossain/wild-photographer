@@ -22,7 +22,7 @@ const ServicesSection = () => {
 
   return (
     <div className="container mx-auto px-5 my-20">
-      <h1 className="text-3xl semibold">{services.length}</h1>
+      <h1 className="text-4xl mb-8 font-bold text-center">Our Services</h1>
 
       <div className=" flex flex-wrap justify-center lg:justify-between items-center">
         {services.map((service) => {
@@ -63,7 +63,7 @@ const ServicesSection = () => {
       </div>
 
       <div className="text-center my-8">
-        <Link to="/services" className="btn btn-primary">
+        <Link to="/services" className="btn rounded-none btn-primary">
           See all services
         </Link>
       </div>

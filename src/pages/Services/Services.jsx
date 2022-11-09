@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/AuthContext';
 
 const Services = () => {
   const [services, setServices] = useState([])
+  const {loading} = useContext(UserContext)
+ 
   useEffect(() => {
     fetch('http://localhost:5000/services')
     .then((response) => response.json())
@@ -15,6 +18,14 @@ const Services = () => {
     })
     .catch(err => console.log(err))
   }, [])
+
+
+  if(loading) {
+    return <>
+        <h1 className="text-3xl">Loading ........</h1>
+    </>
+}
+
   return (
     <div className='container mx-auto my-20'>
       <h1 className="text-3xl font-bold text-center my-20">Services</h1>
