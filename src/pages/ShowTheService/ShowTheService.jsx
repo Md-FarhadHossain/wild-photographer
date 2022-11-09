@@ -6,10 +6,9 @@ const ShowTheService = () => {
   const serviceData = useLoaderData();
   // console.log(serviceData);
   const [reviews, setReviews] = useState([]);
-  const [reviewId, setReviewId] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/add-review")
+    fetch(`http://localhost:5000/add-review`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -17,19 +16,19 @@ const ShowTheService = () => {
       });
   }, []);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/add-review/${reviews?.serviceId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        
-        console.log(data);
-        setReviewId(data);
-      });
-  },[])
-
-  console.log(reviews)
-
+  const remaningReview = reviews.filter(review => review.serviceId == serviceData._id)
+  
   const { title, description, image, price, _id } = serviceData;
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/add-review?serviceId=${}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setReviews(data);
+  //     });
+  // }, [])
+
 
   // reviews.map((re) => {
   //   if(serviceData?._id == re.serviceId){
@@ -66,7 +65,7 @@ const ShowTheService = () => {
         <div className="mt-14">
           <h1 className="text-3xl font-bold my-8">Customars Reviews</h1>
           <div className="flex flex-wrap justify-between items-center my-8">
-            {reviews.map((userReview) => {
+            {remaningReview.map((userReview) => {
               const { displayName, email, photoURL, review, _id } = userReview;
               return (
                 <div
