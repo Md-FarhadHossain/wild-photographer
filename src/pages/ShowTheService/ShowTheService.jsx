@@ -31,14 +31,14 @@ const ShowTheService = () => {
 
   const { title, description, image, price, _id } = serviceData;
 
-  reviews.map((re) => {
-    if(serviceData?._id == re.serviceId){
-      console.log('good',_id,re.serviceId)
-    } else {
-      console.log('badd',serviceData?._id, re.serviceId)
-    }
+  // reviews.map((re) => {
+  //   if(serviceData?._id == re.serviceId){
+  //     console.log('good',_id,re.serviceId)
+  //   } else {
+  //     console.log('badd',serviceData?._id, re.serviceId)
+  //   }
   
-  })
+  // })
 
  
   return (

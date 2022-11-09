@@ -13,6 +13,7 @@ import AddService from '../pages/AddService/AddService'
 import MyReviews from '../pages/MyReviews/MyReviews'
 import PrivetRoutes from './PrivetRoutes'
 import AddReview from '../pages/AddReview/AddReview'
+import UpdateReview from '../pages/UpdateReview/UpdateReview'
 
 const Routes = () => {
     const router = createBrowserRouter([
@@ -71,6 +72,11 @@ const Routes = () => {
                         <AddReview />
                     </PrivetRoutes>,
                     loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                },
+                {
+                    path: '/my-reviews/edit/:id',
+                    element: <UpdateReview />,
+                    loader: async({params}) => fetch(`http://localhost:5000/add-review/${params.id}`)
                 }
                 
             ]

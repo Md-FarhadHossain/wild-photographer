@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { UserContext } from "../../context/AuthContext";
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 
 const MyReviews = () => {
   const [myReview, setMyReview] = useState([]);
@@ -13,25 +14,33 @@ const MyReviews = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)
-        setRes(!res);
+        
         setMyReview(data);
       });
   }, [res]);
+
+  console.log(myReview)
 
   const hanldeDelete = (userReview) => {
     // e.preventDefault()
     fetch(`http://localhost:5000/add-review/${userReview?._id}`, {
       method: "DELETE",
     }).then((data) => {
+      setRes(!res)
       console.log(data)
       toast.success('Successfully Deleted the Review!')
     });
   };
+
+  const hanldeEdit = (userReview) => {
+
+  }
+
   document.title = 'My Review'
-  
+
   return (
     <div className="mx-auto container">
-      my review
+      <h1 className="text-center text-4xl font-bold my-4">My review</h1>
       <div>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
@@ -79,12 +88,21 @@ const MyReviews = () => {
                     </td>
                     <td>Purple</td>
                     <th>
+                    
+                      <Link to={`/my-reviews/edit/${_id}`}
+                        onClick={() => hanldeEdit(userReview)}
+                        className="btn btn-success text-gray-900 btn-sm"
+                      >
+                        Edit
+                      </Link>
                       <button
                         onClick={() => hanldeDelete(userReview)}
-                        className="btn btn-warning btn-xs"
+                        className="btn ml-4 btn-error text-gray-900 btn-sm"
                       >
                         DELETE
                       </button>
+
+                      
                     </th>
                   </tr>
                 );
