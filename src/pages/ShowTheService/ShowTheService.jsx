@@ -8,7 +8,7 @@ const ShowTheService = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/add-review`, {
+    fetch(`https://wildife-grapher.vercel.app/add-review`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -26,7 +26,7 @@ const ShowTheService = () => {
   const { title, description, image, price, _id } = serviceData;
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/add-review?serviceId=${}`)
+  //   fetch(`https://wildife-grapher.vercel.app/add-review?serviceId=${}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);

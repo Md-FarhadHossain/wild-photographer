@@ -31,7 +31,7 @@ const Login = () => {
             
 
             // Jwt Authentication
-            fetch('http://localhost:5000/jwt', {
+            fetch('https://wildife-grapher.vercel.app/jwt', {
               method: 'POST',
               headers: {
                 'content-type': 'application/json'

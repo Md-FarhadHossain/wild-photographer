@@ -8,7 +8,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 const ServicesSection = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/services`, {
+    fetch(`https://wildife-grapher.vercel.app/services`, {
       headers: {
         limit: 3,
       },

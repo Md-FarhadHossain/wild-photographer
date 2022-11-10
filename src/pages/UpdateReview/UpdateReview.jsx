@@ -16,7 +16,7 @@ const UpdateReview = () => {
   console.log(id);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/add-review/${id}`)
+    fetch(`https://wildife-grapher.vercel.app/add-review/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -40,7 +40,7 @@ const UpdateReview = () => {
     };
     console.log(reviewValue);
 
-    fetch(`http://localhost:5000/add-review/${id}`, {
+    fetch(`https://wildife-grapher.vercel.app/add-review/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json'

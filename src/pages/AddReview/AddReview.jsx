@@ -30,7 +30,7 @@ const AddReview = () => {
     };
     console.log(reviewValue);
 
-    fetch(`http://localhost:5000/add-review`, {
+    fetch(`https://wildife-grapher.vercel.app/add-review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,7 +43,7 @@ const AddReview = () => {
       toast.success("Review added successfully!");
       setTimeout(() => {
         navigate(`/services/${servicesData?._id}`)
-      }, 1000);
+      }, 300);
     })
     .catch(err => {
       toast.error("Review didn't added");

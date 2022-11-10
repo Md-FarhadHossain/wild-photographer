@@ -10,7 +10,7 @@ const Services = () => {
   const {loading} = useContext(UserContext)
  
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch('https://wildife-grapher.vercel.app/services')
     .then((response) => response.json())
     .then(data => {
       setServices(data)

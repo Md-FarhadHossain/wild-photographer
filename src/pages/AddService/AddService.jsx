@@ -15,7 +15,7 @@ const AddService = () => {
       price: e.target.price.value,
     }
     console.log(serviceValue)
-    fetch('http://localhost:5000/services', {
+    fetch('https://wildife-grapher.vercel.app/services', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

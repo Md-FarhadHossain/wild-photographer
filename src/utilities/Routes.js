@@ -53,7 +53,7 @@ const Routes = () => {
                     path: '/services/:id',
                     element: <ShowTheService />,
                     loader: ({params}) => {
-                        return fetch(`http://localhost:5000/services/${params.id}`, {
+                        return fetch(`https://wildife-grapher.vercel.app/services/${params.id}`, {
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('token')}`
                               }
@@ -79,7 +79,7 @@ const Routes = () => {
                         <AddReview />
                     </PrivetRoutes>,
                     loader: async({params}) => {
-                        return fetch(`http://localhost:5000/services/${params.id}`, {
+                        return fetch(`https://wildife-grapher.vercel.app/services/${params.id}`, {
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('token')}`
                               }
@@ -90,7 +90,7 @@ const Routes = () => {
                     path: '/my-reviews/edit/:id',
                     element: <UpdateReview />,
                     loader: async({params}) => {
-                        return fetch(`http://localhost:5000/add-review/${params.id}`, {
+                        return fetch(`https://wildife-grapher.vercel.app/add-review/${params.id}`, {
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('token')}`
                               }

@@ -13,14 +13,14 @@ const MyReviews = () => {
   console.log(serviceData);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/add-review?email=${user?.email}`, {
+    fetch(`https://wildife-grapher.vercel.app/add-review?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data)
+       
 
         setMyReview(data);
       });
@@ -29,10 +29,10 @@ const MyReviews = () => {
   console.log(myReview);
 
   const hanldeDelete = (userReview) => {
-    // e.preventDefault()
+    
     const modal = window.confirm(`you want to delete the review?`);
     if(modal){
-      fetch(`http://localhost:5000/add-review/${userReview?._id}`, {
+      fetch(`https://wildife-grapher.vercel.app/add-review/${userReview?._id}`, {
       method: "DELETE",
     }).then((data) => {
       setRes(!res);
@@ -44,7 +44,7 @@ const MyReviews = () => {
     }
   };
 
-  const hanldeEdit = (userReview) => {};
+  // Count the review number
   let count = 1;
 
   document.title = "My Review";
@@ -66,7 +66,9 @@ const MyReviews = () => {
               </tr>
             </thead>
             <tbody>
-              {myReview.map((userReview) => {
+
+              {myReview.length ? <>{myReview.map((userReview) => {
+                
                 const {
                   displayName,
                   email,
@@ -79,7 +81,9 @@ const MyReviews = () => {
                 } = userReview;
 
                 return (
+                  
                   <tr key={_id}>
+                    
                     <th className="border">
                       <span>{count++}</span>
                     </th>
@@ -112,7 +116,7 @@ const MyReviews = () => {
                     <th className="text-right">
                       <Link
                         to={`/my-reviews/edit/${_id}`}
-                        onClick={() => hanldeEdit(userReview)}
+                        
                         className="btn btn-success text-gray-900 btn-sm"
                       >
                         Edit
@@ -126,7 +130,9 @@ const MyReviews = () => {
                     </th>
                   </tr>
                 );
-              })}
+              })}</> : <th className="text-center text-3xl translate-x-[250%]">No Review yet</th>}
+              
+              
             </tbody>
           </table>
         </div>
