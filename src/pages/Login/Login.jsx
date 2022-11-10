@@ -5,10 +5,47 @@ import { UserContext } from '../../context/AuthContext'
 const Login = () => {
 
 
-    const {login, signout} = useContext(UserContext)
+    const {login, signout,signinWithGoogle} = useContext(UserContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+
+
+    const handleGoogleSignin = (e)  => {
+      e.preventDefault()
+      signinWithGoogle()
+      .then(result => {
+        console.log(result)
+
+        console.log(result)
+            const user = result.user
+            const currentUser = {
+              email: user.email,
+            }
+            
+
+        // Jwt Authentication
+        fetch('https://wildife-grapher.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+        .then(res => {
+          if(res.status === 401 || res.status === 403) {
+           return signout()
+          }
+          return res.json()
+        })
+        .then(data => {
+          console.log(data)
+          // set the value in local storage
+          localStorage.setItem('token', data.token)
+          navigate(from, {replace: true})
+        })
+      })
+    }
     
     const handleLogin = (e) => {
         e.preventDefault()
@@ -21,7 +58,9 @@ const Login = () => {
         login(userInfo.email, userInfo.password)
         .then(result => {
 
-          
+          setTimeout(() => {
+            navigate(from, {replace: true})
+          }, 1000);
 
             console.log(result)
             const user = result.user
@@ -97,7 +136,12 @@ const Login = () => {
           <button className="btn btn-primary">Login</button>
         </div>
       </form>
+
+      
     </div>
+    <div className="my-4 w-[24rem]">
+          <button onClick={handleGoogleSignin}  className='btn btn-secondary w-full'>Sing up with Google</button>
+        </div>
   </div>
   )
 }

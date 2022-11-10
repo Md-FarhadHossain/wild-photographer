@@ -1,28 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { UserContext } from "../../context/AuthContext";
 
 const ShowTheService = () => {
   const serviceData = useLoaderData();
   // console.log(serviceData);
   const [reviews, setReviews] = useState([]);
 
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     fetch(`https://wildife-grapher.vercel.app/add-review`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`
-      }
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         setReviews(data);
       });
   }, []);
 
-  const remaningReview = reviews.filter(review => review.serviceId == serviceData._id)
-  
+  const remaningReview = reviews.filter(
+    (review) => review.serviceId == serviceData._id
+  );
+
   const { title, description, image, price, _id } = serviceData;
 
   // useEffect(() => {
@@ -34,17 +39,15 @@ const ShowTheService = () => {
   //     });
   // }, [])
 
-
   // reviews.map((re) => {
   //   if(serviceData?._id == re.serviceId){
   //     console.log('good',_id,re.serviceId)
   //   } else {
   //     console.log('badd',serviceData?._id, re.serviceId)
   //   }
-  
+
   // })
 
- 
   return (
     <div>
       <div className="container flex-col mx-auto flex items-center my-16 h-[80vh]">
@@ -59,12 +62,50 @@ const ShowTheService = () => {
             <p>{description}</p>
             <div className="text-2xl font-bold">Price: ${price}</div>
             <div className="card-actions justify-end">
-              <Link to={`/add-review/${_id}`} className="btn btn-primary">Review this service</Link>
+              {user ? (
+                <>
+                  <Link to={`/add-review/${_id}`} className="btn btn-primary">
+                    Review this service
+                  </Link>
+                </>
+              ) : (
+                <>
+                  
+                  {/* The button to open modal */}
+                  <label htmlFor="my-modal-6" className="btn btn-primary">
+                    Review this service
+                  </label>
+                  
+                  <input
+                    type="checkbox"
+                    id="my-modal-6"
+                    className="modal-toggle"
+                  />
+                  <div className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box">
+                      {/* <h3 className="font-bold text-lg">
+                        Congratulations random Internet user!
+                      </h3> */}
+                      <p className="py-4 text-3xl text-center">
+                      Please login to add a review
+                      </p>
+                      <div className="modal-action">
+                        <label htmlFor="my-modal-6" className="btn btn-error">Close</label>
+                        <Link
+                          to={`/add-review/${_id}`}
+                          htmlFor="my-modal-6"
+                          className="btn"
+                        >
+                          Login Here
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
-
-        
 
         {/* Service Review */}
         <div className="mt-14">

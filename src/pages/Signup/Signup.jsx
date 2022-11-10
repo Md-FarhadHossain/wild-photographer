@@ -60,7 +60,7 @@ const Signup = () => {
     }
     document.title = 'Sign Up'
   return (
-    <div className="h-[75vh] flex flex-col items-center justify-center">
+    <div className="h-[85vh] flex flex-col items-center justify-center">
       <h1 className="text-4xl mb-6 font-bold">Signup Now</h1>
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
         <form onSubmit={handleSignup} className="card-body">
@@ -120,11 +120,11 @@ const Signup = () => {
             <button className="btn btn-primary">Sign up</button>
           </div>
         </form>
-
       </div>
-        <div>
+        <div className="my-4 w-[24rem]">
           <button onClick={handleGoogleSignin}  className='btn btn-secondary w-full'>Sing up with Google</button>
         </div>
+        
     </div>
   );
 };
