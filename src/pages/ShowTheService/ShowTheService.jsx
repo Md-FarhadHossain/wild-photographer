@@ -60,8 +60,8 @@ const ShowTheService = () => {
         {/* Service Details */}
         <h1 className="text-3xl font-bold my-8">Service Details</h1>
         <div className="card lg:card-side bg-base-100 shadow-xl">
-          <figure className="w-full">
-            <img className="h-full" src={image} alt="Album" />
+          <figure className="lg:w-[20rem]">
+            <img className="h-[20rem] object-cover mx-w-[10rem]" src={image} alt="Album" />
           </figure>
           <div className="card-body">
             <h2 className="card-title">{title}</h2>
