@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { UserContext } from "../../context/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
+import PuffLoader from "react-spinners/ClipLoader";
+
 
 const MyReviews = () => {
   const [myReview, setMyReview] = useState([]);
@@ -137,9 +139,12 @@ const MyReviews = () => {
               </div>
             </>
           ) : (
-            <div className="h-[80vh] flex items-center justify-center text-3xl font-semibold">
+            <>
+            <h1 className="text-center"><PuffLoader size={50} color="#36d7b7" /></h1>
+              <div className="h-[80vh] flex items-center justify-center text-3xl font-semibold">
               No reviews were added
             </div>
+            </>
           )
           
         

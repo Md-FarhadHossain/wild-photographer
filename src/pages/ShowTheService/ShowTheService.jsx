@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
+import PuffLoader from "react-spinners/ClipLoader";
+
 import { Link, useLoaderData } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
@@ -47,6 +49,10 @@ const ShowTheService = () => {
   //   }
 
   // })
+
+  if(serviceData.length === 0) {
+    return <h1 className="text-center"><PuffLoader size={50} color="#36d7b7" /></h1>
+  }
 
   return (
     <div>
