@@ -90,7 +90,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-           <img className="w-9 mr-2" src={logo} alt="" /> Wildlife Grapher
+           <img className="w-9 mr-2" src={logo} alt="" /> <span className="hidden md:block">Wildlife Grapher</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
