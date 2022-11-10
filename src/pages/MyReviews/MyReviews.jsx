@@ -52,6 +52,8 @@ const MyReviews = () => {
   // Count the review number
   let count = 1;
 
+  
+ 
   document.title = "My Review";
 
   return (
@@ -140,9 +142,7 @@ const MyReviews = () => {
             </>
           ) : (
             <>
-            {setTimeout(() => {
-              <h1 className="text-center"><PuffLoader size={50} color="#36d7b7" /></h1>
-            }, 2000)}
+            
               <div className="h-[80vh] flex items-center justify-center text-3xl text-gray-900 font-semibold">
               No reviews were added
             </div>

@@ -4,61 +4,82 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-    const {signup, signinWithGoogle,signout} = useContext(UserContext)
-    const navigate = useNavigate()
-    const location = useLocation()
-    const from = location.state?.from?.pathname || '/'
-    const handleSignup = (e) => {
-        e.preventDefault()
-        const userInfo = {
-            email: e.target.email.value,
-            password: e.target.password.value,
-            name: e.target.name.value,
-            photoLink: e.target.photoLink.value
-        }
-        console.log(userInfo)
-        signup(userInfo.email, userInfo.password)
-        .then(result => {
-            console.log(result)
-        })
-        .catch(err => console.log(err))
-    }
-    const handleGoogleSignin = (e)  => {
-      e.preventDefault()
-      signinWithGoogle()
-      .then(result => {
-        console.log(result)
-
-        console.log(result)
-            const user = result.user
-            const currentUser = {
-              email: user.email,
-            }
-            
-
+  const { signup, signinWithGoogle, signout } = useContext(UserContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const handleSignup = (e) => {
+    e.preventDefault();
+    const userInfo = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+      name: e.target.name.value,
+      photoLink: e.target.photoLink.value,
+    };
+    console.log(userInfo);
+    signup(userInfo.email, userInfo.password)
+      .then((result) => {
+        console.log(result);
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
         // Jwt Authentication
-        fetch('https://wildife-grapher.vercel.app/jwt', {
-          method: 'POST',
+        fetch("https://wildife-grapher.vercel.app/jwt", {
+          method: "POST",
           headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
           },
-          body: JSON.stringify(currentUser)
+          body: JSON.stringify(currentUser),
         })
-        .then(res => {
-          if(res.status === 401 || res.status === 403) {
-           return signout()
-          }
-          return res.json()
-        })
-        .then(data => {
-          console.log(data)
-          // set the value in local storage
-          localStorage.setItem('token', data.token)
-          navigate(from, {replace: true})
-        })
+          .then((res) => {
+            if (res.status === 401 || res.status === 403) {
+              return signout();
+            }
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            // set the value in local storage
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          });
       })
-    }
-    document.title = 'Sign Up'
+      .catch((err) => console.log(err));
+  };
+  const handleGoogleSignin = (e) => {
+    e.preventDefault();
+    signinWithGoogle().then((result) => {
+      console.log(result);
+
+      const user = result.user;
+      const currentUser = {
+        email: user.email,
+      };
+
+      // Jwt Authentication
+      fetch("https://wildife-grapher.vercel.app/jwt", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
+      })
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            return signout();
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          // set the value in local storage
+          localStorage.setItem("token", data.token);
+          navigate(from, { replace: true });
+        });
+    });
+  };
+  document.title = "Sign Up";
   return (
     <div className="h-[85vh] flex flex-col items-center justify-center">
       <h1 className="text-4xl mb-6 font-bold">Signup Now</h1>
@@ -121,10 +142,14 @@ const Signup = () => {
           </div>
         </form>
       </div>
-        <div className="my-4 w-[24rem]">
-          <button onClick={handleGoogleSignin}  className='btn btn-secondary w-full'>Sing up with Google</button>
-        </div>
-        
+      <div className="my-4 w-[24rem]">
+        <button
+          onClick={handleGoogleSignin}
+          className="btn btn-secondary w-full"
+        >
+          Sing up with Google
+        </button>
+      </div>
     </div>
   );
 };
