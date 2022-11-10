@@ -13,12 +13,14 @@ import MyReviews from '../pages/MyReviews/MyReviews'
 import PrivetRoutes from './PrivetRoutes'
 import AddReview from '../pages/AddReview/AddReview'
 import UpdateReview from '../pages/UpdateReview/UpdateReview'
+import ErrorPage from '../pages/ErrorPage/ErrorPage'
 
 const Routes = () => {
     const router = createBrowserRouter([
         {
             path: '/',
             element: <Main />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     path: '/',
