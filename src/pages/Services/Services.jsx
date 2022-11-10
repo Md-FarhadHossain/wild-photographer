@@ -49,7 +49,7 @@ document.title = 'Services'
                 </PhotoProvider>
               </figure>
               <div className="card-body">
-                <h2 className="card-title ">
+                <h2 className="card-title h-[3rem] overflow-hidden">
                   {service.title}
                   <div className="badge badge-secondary">${service.price}</div>
                 </h2>

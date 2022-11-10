@@ -50,8 +50,10 @@ const UpdateReview = () => {
     .then(res => res.json())
     .then(data => {
         toast.success('Review updated successfully!')
-        navigate('/my-reviews')
-        e.target.reset()
+        setTimeout(() => {
+          navigate('/my-reviews')
+          e.target.reset()
+        }, 1000);
         console.log(data)
     })
   }

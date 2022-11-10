@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const AddReview = () => {
   const [reviews, setReviews] = useState();
   const { user } = useContext(UserContext);
+  const navigate = useNavigate()
   // console.log(user?.displayName, user?.email, user?.photoURL)
 
   const servicesData = useLoaderData();
@@ -23,6 +24,9 @@ const AddReview = () => {
       photoURL: user?.photoURL,
       review: e.target.textarea.value,
       serviceId: servicesData?._id,
+      image: servicesData?.image,
+      title: servicesData?.title,
+      price: servicesData?.price,
     };
     console.log(reviewValue);
 
@@ -37,7 +41,13 @@ const AddReview = () => {
     }).then((result) => {
       console.log(result);
       toast.success("Review added successfully!");
-    });
+      setTimeout(() => {
+        navigate(`/services/${servicesData?._id}`)
+      }, 1000);
+    })
+    .catch(err => {
+      toast.error("Review didn't added");
+    })
     e.target.reset();
   };
 
@@ -53,6 +63,8 @@ const AddReview = () => {
           name="textarea"
           className="textarea textarea-bordered min-h-[10rem] max-h-[15rem]"
           placeholder="Write about your experience on our services..."
+          
+          required
         ></textarea>
         <button className="btn mt-8">Add The Review</button>
       </form>

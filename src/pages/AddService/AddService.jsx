@@ -1,7 +1,10 @@
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddService = () => {
+
+  const navigate = useNavigate()
 
   const handleAddService = (e) => {
     e.preventDefault();
@@ -23,6 +26,9 @@ const AddService = () => {
       console.log(result)
       e.target.reset()
       toast.success('Service added successfully!')
+      setTimeout(() => {
+        navigate('/services')
+      }, 800);
     })
   }
 
@@ -40,6 +46,7 @@ const AddService = () => {
               name="title"
               placeholder="Title"
               className="input input-bordered w-full max-w-xs"
+              required
             />
           </div>
           <div className="my-4">
@@ -49,6 +56,7 @@ const AddService = () => {
               name="description"
               placeholder="Description"
               className="input input-bordered w-full max-w-xs"
+              required
             />
           </div>
 
@@ -59,6 +67,7 @@ const AddService = () => {
               name="photoLink"
               placeholder="Photo Link"
               className="input input-bordered w-full max-w-xs"
+              required
             />
           </div>
           <div className="my-4">
@@ -68,6 +77,7 @@ const AddService = () => {
               name="price"
               placeholder="Price"
               className="input input-bordered w-full max-w-xs"
+              required
             />
           </div>
           <div>
