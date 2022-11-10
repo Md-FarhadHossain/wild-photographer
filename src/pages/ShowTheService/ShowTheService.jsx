@@ -63,9 +63,9 @@ const ShowTheService = () => {
           <figure className="lg:w-[20rem]">
             <img className="h-[20rem] object-cover mx-w-[10rem]" src={image} alt="Album" />
           </figure>
-          <div className="card-body">
+          <div className="card-body w-[50%]">
             <h2 className="card-title">{title}</h2>
-            <p>{description}</p>
+            <p className="">{description}</p>
             <div className="text-2xl font-bold">Price: ${price}</div>
             <div className="card-actions justify-end">
               {user ? (
