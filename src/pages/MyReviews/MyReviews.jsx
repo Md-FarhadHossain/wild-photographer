@@ -2,12 +2,15 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { UserContext } from "../../context/AuthContext";
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const MyReviews = () => {
   const [myReview, setMyReview] = useState([]);
   const [res, setRes] = useState(true);
   const { user } = useContext(UserContext);
+
+  const serviceData = useLoaderData()
+  console.log(serviceData)
 
   useEffect(() => {
     fetch(`http://localhost:5000/add-review?email=${user?.email}`, {

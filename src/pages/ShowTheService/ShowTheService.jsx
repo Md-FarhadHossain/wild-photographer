@@ -8,10 +8,15 @@ const ShowTheService = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/add-review`)
+    fetch(`http://localhost:5000/add-review`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        
         setReviews(data);
       });
   }, []);

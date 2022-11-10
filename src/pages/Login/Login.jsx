@@ -5,10 +5,11 @@ import { UserContext } from '../../context/AuthContext'
 const Login = () => {
 
 
-    const {login} = useContext(UserContext)
+    const {login, signout} = useContext(UserContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+    
     const handleLogin = (e) => {
         e.preventDefault()
         const userInfo = {
@@ -37,7 +38,12 @@ const Login = () => {
               },
               body: JSON.stringify(currentUser)
             })
-            .then(res => res.json())
+            .then(res => {
+              if(res.status === 401 || res.status === 403) {
+               return signout()
+              }
+              return res.json()
+            })
             .then(data => {
               console.log(data)
               // set the value in local storage

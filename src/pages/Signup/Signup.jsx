@@ -1,10 +1,13 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/AuthContext";
 
 const Signup = () => {
-    const {signup, signinWithGoogle} = useContext(UserContext)
+    const {signup, signinWithGoogle,signout} = useContext(UserContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
     const handleSignup = (e) => {
         e.preventDefault()
         const userInfo = {
@@ -25,6 +28,34 @@ const Signup = () => {
       signinWithGoogle()
       .then(result => {
         console.log(result)
+
+        console.log(result)
+            const user = result.user
+            const currentUser = {
+              email: user.email,
+            }
+            
+
+        // Jwt Authentication
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+        })
+        .then(res => {
+          if(res.status === 401 || res.status === 403) {
+           return signout()
+          }
+          return res.json()
+        })
+        .then(data => {
+          console.log(data)
+          // set the value in local storage
+          localStorage.setItem('token', data.token)
+          navigate(from, {replace: true})
+        })
       })
     }
     document.title = 'Sign Up'

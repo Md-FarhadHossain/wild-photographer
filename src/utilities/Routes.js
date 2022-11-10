@@ -52,7 +52,13 @@ const Routes = () => {
                 {
                     path: '/services/:id',
                     element: <ShowTheService />,
-                    loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                    loader: ({params}) => {
+                        return fetch(`http://localhost:5000/services/${params.id}`, {
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('token')}`
+                              }
+                        })
+                    }
                 },
                 {
                     path: '/add-service',
@@ -64,19 +70,32 @@ const Routes = () => {
                     path: '/my-reviews',
                     element: <PrivetRoutes>
                         <MyReviews />
-                    </PrivetRoutes>
+                    </PrivetRoutes>,
+                    
                 },
                 {
                     path: '/add-review/:id',
                     element: <PrivetRoutes>
                         <AddReview />
                     </PrivetRoutes>,
-                    loader: async({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                    loader: async({params}) => {
+                        return fetch(`http://localhost:5000/services/${params.id}`, {
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('token')}`
+                              }
+                        })
+                    }
                 },
                 {
                     path: '/my-reviews/edit/:id',
                     element: <UpdateReview />,
-                    loader: async({params}) => fetch(`http://localhost:5000/add-review/${params.id}`)
+                    loader: async({params}) => {
+                        return fetch(`http://localhost:5000/add-review/${params.id}`, {
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('token')}`
+                              }
+                        })
+                    }
                 }
                 
             ]
