@@ -56,11 +56,11 @@ const MyReviews = () => {
 
   return (
     <div className="mx-auto container">
-      <div>
+      <div className="text-white">
           {myReview.length ? (
             <>
-            <h1 className="text-center text-4xl font-bold my-4">My review</h1>
-        <div className="overflow-x-auto w-full">
+            <h1 className="text-center text-4xl font-bold my-4 text-gray-900">My review</h1>
+        <div className="overflow-x-auto w-full text-gray-900">
               {" "}
               <table className="table w-full my-8 border border-separate">
                 {/* <!-- head --> */}
@@ -140,8 +140,10 @@ const MyReviews = () => {
             </>
           ) : (
             <>
-            <h1 className="text-center"><PuffLoader size={50} color="#36d7b7" /></h1>
-              <div className="h-[80vh] flex items-center justify-center text-3xl font-semibold">
+            {setTimeout(() => {
+              <h1 className="text-center"><PuffLoader size={50} color="#36d7b7" /></h1>
+            }, 2000)}
+              <div className="h-[80vh] flex items-center justify-center text-3xl text-gray-900 font-semibold">
               No reviews were added
             </div>
             </>

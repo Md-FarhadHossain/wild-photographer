@@ -55,7 +55,7 @@ const ShowTheService = () => {
   }
 
   return (
-    <div>
+    <section>
       <div className="container flex-col mx-auto flex items-center my-16 h-[80vh]">
         {/* Service Details */}
         <h1 className="text-3xl font-bold my-8">Service Details</h1>
@@ -114,10 +114,10 @@ const ShowTheService = () => {
         </div>
 
         {/* Service Review */}
-        <div className="mt-14">
-          <h1 className="text-3xl font-bold my-8">Customars Reviews</h1>
+        <div className="my-14 pb-14">
+          <h1 className="text-3xl text-center font-bold my-8">Customars Reviews</h1>
           <div className="flex flex-wrap justify-between items-center my-8">
-            {remaningReview.map((userReview) => {
+            {remaningReview.length ? <>{remaningReview.map((userReview) => {
               const { displayName, email, photoURL, review, _id } = userReview;
               return (
                 <div
@@ -174,11 +174,12 @@ const ShowTheService = () => {
                   </div>
                 </div>
               );
-            })}
+            })}</> : <><h1 className="text-3xl text-center w-full">No review yet</h1></>}
+            
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
