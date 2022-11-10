@@ -70,9 +70,9 @@ const Services = () => {
                 <p className="short_descrip">{service.description}</p>
                 <Link
                   to={`/services/${service._id}`}
-                  className="link-hover inline-block text-right text-blue-500"
+                  className="link-hoverinline-block text-right text-blue-500"
                 >
-                  see more
+                  <small><span className="btn btn-sm bg-blue-500 font-">see more</span></small>
                 </Link>
                 <div className="card-actions">
                   <h3 className="text-2xl font-semibold">

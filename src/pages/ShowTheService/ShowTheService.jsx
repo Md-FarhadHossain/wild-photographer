@@ -56,14 +56,14 @@ const ShowTheService = () => {
 
   return (
     <section>
-      <div className="container flex-col mx-auto flex items-center mb-[45rem] lg:mb-[20rem] my-16 h-[80vh]">
+      <div className="container flex-col mx-auto px-4 flex items-center mb-[45rem] lg:mb-[20rem] my-16 h-[80vh]">
         {/* Service Details */}
         <h1 className="text-3xl font-bold my-8">Service Details</h1>
         <div className="card lg:card-side bg-base-100 shadow-xl">
           <figure className="lg:w-[20rem]">
             <img className="h-[20rem] object-cover mx-w-[10rem]" src={image} alt="Album" />
           </figure>
-          <div className="card-body w-[50%]">
+          <div className="card-body w-full lg:w-[50%]">
             <h2 className="card-title">{title}</h2>
             <p className="">{description}</p>
             <div className="text-2xl font-bold">Price: ${price}</div>
