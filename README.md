@@ -16,5 +16,9 @@
    * `CSS`
    * `Javascript`
    * `React.js` the Javascript framework
+   * `MongoDB` for database creation
+   * `Express JS` for server-side
+   * `Node JS` for backend creation
+   * `vercel` for server-side deployment
    * `Tailwind CSS` the CSS framwork
    * `DaisyUI` the Tailwind components library
