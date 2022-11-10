@@ -9,12 +9,12 @@ const FeaturedOn = () => {
   return (
     <div className='container mx-auto px-4 py-16'>
         <h1 className="text-4xl font-bold mb-8 mt-20 text-center">Featured On</h1>
-        <div className='flex justify-between items-center flex-wrap'>
-            <img className='w-[10rem] grayscale hover:grayscale-0 my-4' src={featured1} alt="" />
-            <img className='w-[10rem] grayscale hover:grayscale-0 my-4' src={featured2} alt="" />
-            <img className='w-[10rem] grayscale hover:grayscale-0 my-4' src={featured3} alt="" />
-            <img className='w-[10rem] grayscale hover:grayscale-0 my-4' src={featured4} alt="" />
-            <img className='w-[10rem] grayscale hover:grayscale-0 my-4' src={featured5} alt="" />
+        <div className='flex justify-center lg:justify-between items-center flex-wrap'>
+            <img className='w-[10rem] grayscale hover:grayscale-0 mx-2 my-4' src={featured1} alt="" />
+            <img className='w-[10rem] grayscale hover:grayscale-0 mx-2 my-4' src={featured2} alt="" />
+            <img className='w-[10rem] grayscale hover:grayscale-0 mx-2 my-4' src={featured3} alt="" />
+            <img className='w-[10rem] grayscale hover:grayscale-0 mx-2 my-4' src={featured4} alt="" />
+            <img className='w-[10rem] grayscale hover:grayscale-0 mx-2 my-4' src={featured5} alt="" />
         </div>
     </div>
   )

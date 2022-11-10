@@ -41,7 +41,7 @@ const Services = () => {
   }
   document.title = "Services";
   return (
-    <div className="container mx-auto my-20">
+    <div className="container mx-auto px-4 my-20">
       <h1 className="text-3xl font-bold text-center my-20">Services</h1>
 
       <div className=" flex flex-wrap justify-center lg:justify-between items-center">
