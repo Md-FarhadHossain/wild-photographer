@@ -22,3 +22,4 @@
    * `vercel` for server-side deployment
    * `Tailwind CSS` the CSS framwork
    * `DaisyUI` the Tailwind components library
+   * `react-photo-view` for viewing the photo full screen
