@@ -1,4 +1,4 @@
-# Welcome to StudyCation Github repo
+# Welcome to Wildlife Grapher service Github repo
 
 ## Website name `Wildlife Grapher`
 
