@@ -13,7 +13,7 @@ const HeroSection = () => {
           <div className="max-w-xl">
             <h1 className="mb-5 text-5xl font-bold">Welcome to,<br /> Wildlife Grapher</h1>
             <p className="mb-5">
-            Here are many elements in photography that come together to make an image be considered “good”. Some of these elements include, but are not limited to lighting, the rule of thirds, lines, shapes, texture, patterns, and color. All of these things play an important role when it comes to photography.
+            Here are many elements in photography that come together to make an image be considered “good”. Some of these elements include, but are not limited to lighting.
             </p>
             <Link to='/services' className="btn  btn-accent text-black rounded-sm px-9 btn-lg">Services</Link>
             <Link to='/blog' className="btn ml-4 btn-accent  text-black rounded-sm px-9 btn-lg">Blog</Link>
