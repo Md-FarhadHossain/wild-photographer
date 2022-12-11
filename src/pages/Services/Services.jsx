@@ -12,7 +12,11 @@ const Services = () => {
   const { loading } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("https://wildife-grapher.vercel.app/services")
+    fetch("https://wildife-grapher.vercel.app/services", {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         setServices(data);
